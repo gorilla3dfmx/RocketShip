@@ -16,7 +16,8 @@ uses
   Gorilla.Material.Particle, FMX.Ani, Gorilla.Controller,
   Gorilla.Controller.Passes.Environment, Gorilla.Plane, Gorilla.Material.Blinn,
   Gorilla.Sphere, FMX.Objects, Gorilla.Audio.FMOD, Gorilla.Audio.FMOD.Intf.Sound,
-  Gorilla.Audio.FMOD.Intf.Channel, Gorilla.Particle.Explosion;
+  Gorilla.Audio.FMOD.Intf.Channel, Gorilla.Particle.Explosion,
+  Gorilla.Material.Custom;
 
 const
   // Number of obstacles in scene per row
@@ -214,7 +215,7 @@ begin
 
   // Add a sphere collider for each instance with the maximum size of a side as radius
   DoAddSphereCollider(AData, TypeInfo(TGorillaMeshInstance), APrefab,
-    LTransform, Max(ASize.X, Max(ASize.Y, ASize.Z)), ABody);
+    LTransform, Max(ASize.X, Max(ASize.Y, ASize.Z)) * 0.4, ABody);
 end;
 
 { TForm1 }
@@ -791,6 +792,7 @@ begin
 
   // Activate physics
   GorillaPhysicsSystem1.Active := true;
+//  GorillaPhysicsSystem1.RenderColliders := true;
 
   // Reset rocketship to starting position
   RocketshipGroup.Position.Point := TPoint3D.Create(0, -5, 0);
